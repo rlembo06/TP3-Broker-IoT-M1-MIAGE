@@ -1,3 +1,4 @@
+const db = require('../firestore')
 const timesUtils = require('../utils/times');
 
 module.exports = {
@@ -21,5 +22,10 @@ module.exports = {
         </html>`);
     },
 
-    pong: res => res.send("PONG !!!")
+    pong: res => res.send("PONG !!!"),
+
+    firestoreTest: async res => {
+        const documents = await db.collection('test').doc('Yamq6HfEdrBcvMHd6rO8').get();
+        res.send(JSON.stringify(documents.data()))
+    }
 }

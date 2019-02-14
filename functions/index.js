@@ -4,11 +4,11 @@ const app = express();
 
 const cors = require('cors')({origin: true});
 
-const items = require('./routes/items.routes.js');
+const test = require('./routes/test.routes.js');
 
 app.use(cors);
 
 // Import API Routes
-app.use('/items', items);
+app.use('/test', test);
 
 exports.app = functions.https.onRequest(app);
