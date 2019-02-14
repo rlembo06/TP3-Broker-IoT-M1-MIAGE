@@ -19,5 +19,7 @@ module.exports = {
             <button onClick="refresh(this)">Refresh</button>
         </body>
         </html>`);
-    }
+    },
+
+    pong: res => res.send("PONG !!!")
 }
