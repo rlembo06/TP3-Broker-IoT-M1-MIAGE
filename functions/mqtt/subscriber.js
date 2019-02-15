@@ -1,10 +1,10 @@
 const mqtt = require('mqtt')
 const client  = mqtt.connect('mqtt://192.168.1.25');
-const { topic } = require('../constants/mqtt')
+const { topics: { test: topicTest } } = require('../constants/mqtt')
 
 module.exports = {
     subscribe: () => client.on('connect', () => {
-        client.subscribe(topic)
+        client.subscribe(topicTest)
     }),
     
     getMessages: () => client.on('message', (topic, message) => {

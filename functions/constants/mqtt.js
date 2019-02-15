@@ -1,3 +1,8 @@
 module.exports = {
-    topic: "tp3miage"
+    topics: {
+        test: "test",
+        temperature: "temperature",
+        brightness: "brightness",
+        notificationWeb: "notificationWeb",
+    }
 }
