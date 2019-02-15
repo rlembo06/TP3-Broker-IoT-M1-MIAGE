@@ -1,23 +1,16 @@
 const mqtt = require('mqtt');
 const client  = mqtt.connect('mqtt://192.168.1.25');
-
-/* module.exports = client.on('connect', () => {
-    setInterval(() => {
-        client.publish('myTopic', 'Hello mqtt');
-        console.log('Message Sent');
-    }, 5000);
-}); */
+const { topic } = require('../constants/mqtt')
 
 module.exports = {
-    publish: (topic, message) => client.on('connect', () => {
-        setInterval(() => {
-            client.publish(topic, message);
-        }, 5000);
+    publish: message => client.on('connect', () => {
+        client.publish(topic, message);
+        console.log('[MQTT MESSAGE]', 'topic: ', topic, 'message: ', message);
     }),
     
     publishTest: () => client.on('connect', () => {
         setInterval(() => {
-            client.publish('testTopic', 'Hello mqtt');
+            client.publish('tp3MIAGE', 'Hello mqtt');
             console.log('Message Sent');
         }, 5000);
     })

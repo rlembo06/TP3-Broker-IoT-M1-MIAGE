@@ -9,7 +9,7 @@ const test = require('./routes/test.routes.js');
 
 app.use(cors);
 
-subscribeMqtt.subscribe('testTopic');
+subscribeMqtt.subscribe();
 subscribeMqtt.getMessages();
 
 // Import API Routes
