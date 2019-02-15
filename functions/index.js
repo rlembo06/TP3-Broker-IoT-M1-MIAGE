@@ -1,5 +1,6 @@
 const functions = require('firebase-functions');
 const express = require('express');
+const subscribeMqtt = require('./mqtt/subscriber');
 const app = express();
 
 const cors = require('cors')({origin: true});
@@ -7,6 +8,9 @@ const cors = require('cors')({origin: true});
 const test = require('./routes/test.routes.js');
 
 app.use(cors);
+
+subscribeMqtt.subscribe('testTopic');
+subscribeMqtt.getMessages();
 
 // Import API Routes
 app.use('/test', test);
