@@ -5,8 +5,8 @@ module.exports = {
     },
     topics: {
         test: "test",
-        temperature: "temperature",
-        brightness: "brightness",
+        temperatures: "temperatures",
+        brightnesses: "brightnesses",
         notificationWeb: "notificationWeb",
     }
 }
