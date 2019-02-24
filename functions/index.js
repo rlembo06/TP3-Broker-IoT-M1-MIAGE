@@ -1,7 +1,12 @@
 const functions = require('firebase-functions');
 const express = require('express');
 const subscribeMqtt = require('./mqtt/subscriber');
-const { topics: { test: topicTest, temperatures, brightnesses } } = require('./constants/mqtt'); // provisoire
+const { 
+    topics: { 
+        temperatures, 
+        brightnesses, 
+    } 
+} = require('./constants/mqtt');
 const app = express();
 
 const cors = require('cors')({origin: true});
