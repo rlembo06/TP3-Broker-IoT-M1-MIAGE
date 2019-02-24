@@ -11,7 +11,7 @@ const test = require('./routes/test.routes.js');
 app.use(cors);
 
 subscribeMqtt.subscribe(temperatures);
-subscribeMqtt.subscribe(topicTest);
+subscribeMqtt.subscribe(brightnesses);
 subscribeMqtt.getMessages();
 
 // Import API Routes

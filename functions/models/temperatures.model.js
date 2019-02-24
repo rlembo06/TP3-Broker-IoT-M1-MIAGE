@@ -5,9 +5,9 @@ module.exports = {
     addTemperature: async ({macAddress, temperatureInCelsius}) => {
         try {
             const response = await db.collection("temperatures").add({macAddress, temperatureInCelsius})
-            console.log('[MODELS][TEMPERATURES][addTemperature] - Success : ', response)
+            console.log('[MODELS][TEMPERATURES][addTemperature] - Success')
         } catch (error) {
-            console.error('[MODELS][TEMPERATURES][addTemperature] - Success : ', error)
+            console.error('[MODELS][TEMPERATURES][addTemperature] - Failure : ', error)
         }
     }
 
