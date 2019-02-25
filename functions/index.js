@@ -22,10 +22,11 @@ exports.api = functions.https.onRequest((request, response) => {
   
     //const client = mqtt.connect(functions.config().mqtt.server.host, options);
     const client = mqtt.connect(url);
-    
+
     client.on('connect', () => {
         client.subscribe(temperatures);
         client.subscribe(brightnesses);
+        console.log('client connected');
     });
   
     client.on('error', (err) => {
@@ -43,7 +44,8 @@ exports.api = functions.https.onRequest((request, response) => {
             }
             await client.publish(notificationWeb, topic);
         }
-        console.log('TOPIC : ', topic, 'data: ', data)
+        response.send("[Success] - topic: " + topic + " - data: " + data);
+        client.end();
     });
   
 });
