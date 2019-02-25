@@ -1,5 +1,3 @@
-//const express = require('express')
-//const app = express();
 const mqtt = require('mqtt');
 const { 
     broker: { url },
@@ -43,10 +41,3 @@ const mqttApi = () => {
 };
 
 mqttApi();
-
-/* app.get('/', (req, res) => {
-    mqttApi();
-    res.send('Hello World!')
-}); */
-
-//module.exports = app;
