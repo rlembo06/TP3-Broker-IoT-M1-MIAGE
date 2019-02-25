@@ -35,7 +35,6 @@ const mqttApi = () => {
             }
             await client.publish(notificationWeb, topic);
         }
-        client.end();
     });
   
 };
