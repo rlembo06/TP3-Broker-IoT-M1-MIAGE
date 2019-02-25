@@ -4,9 +4,8 @@ module.exports = {
         urlMock: "mqtt://192.168.1.25",
     },
     topics: {
-        test: "test",
-        temperatures: "temperatures",
-        brightnesses: "brightnesses",
-        notificationWeb: "notificationWeb",
+        temperatures: "m1/miage/iot/temperatures",
+        brightnesses: "m1/miage/iot/brightnesses",
+        notificationWeb: "m1/miage/iot/notificationWeb",
     }
 }
