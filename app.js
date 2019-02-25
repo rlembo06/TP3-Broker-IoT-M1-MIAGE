@@ -1,4 +1,5 @@
-const functions = require('firebase-functions');
+//const express = require('express')
+//const app = express();
 const mqtt = require('mqtt');
 const { 
     broker: { url },
@@ -11,17 +12,9 @@ const {
 const { addTemperature } = require('./models/temperatures.model');
 const { addBrightness } = require('./models/brightnesses.model');
 
-exports.api = functions.https.onRequest((request, response) => {
+const mqttApi = () => {
 
-    /* const options = {
-      port: functions.config().mqtt.server.port,
-      host: functions.config().mqtt.server.host,
-      clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
-      encoding: 'utf8'
-    }; */
-  
-    //const client = mqtt.connect(functions.config().mqtt.server.host, options);
-    const client = mqtt.connect(url);
+    const client = mqtt.connect(url,);
 
     client.on('connect', () => {
         client.subscribe(temperatures);
@@ -44,8 +37,16 @@ exports.api = functions.https.onRequest((request, response) => {
             }
             await client.publish(notificationWeb, topic);
         }
-        response.send("[Success] - topic: " + topic + " - data: " + data);
         client.end();
     });
   
-});
+};
+
+mqttApi();
+
+/* app.get('/', (req, res) => {
+    mqttApi();
+    res.send('Hello World!')
+}); */
+
+//module.exports = app;

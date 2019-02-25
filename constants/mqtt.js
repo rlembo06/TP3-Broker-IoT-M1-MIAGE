@@ -1,7 +1,7 @@
 module.exports = {
     broker: {
         url: "mqtt://broker.hivemq.com",
-        urlMock: "mqtt://192.168.1.25",
+        port: 1883,
     },
     topics: {
         temperatures: "m1/miage/iot/temperatures",
