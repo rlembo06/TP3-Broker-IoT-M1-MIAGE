@@ -1,16 +1,14 @@
 {
   "name": "functions",
-  "description": "Cloud Functions for Firebase",
+  "description": "API MQTT / Firestore - TP3/IoT/M1/MIAGE",
   "scripts": {
-    "serve": "firebase serve --only functions",
+    "serve": "firebase serve --only functions:mqttRequest",
+    "deploy": "firebase deploy --only functions:mqttRequest",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.16.4",
     "firebase-admin": "^6.0.0",
     "firebase-functions": "^2.1.0",
     "mqtt": "^2.18.8"

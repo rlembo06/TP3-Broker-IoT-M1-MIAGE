@@ -1,25 +1,35 @@
 const functions = require('firebase-functions');
-const express = require('express');
-const subscribeMqtt = require('./mqtt/subscriber');
+const mqtt = require('mqtt');
+const PubSub = require('./entities/PubSub');
 const { 
     topics: { 
         temperatures, 
         brightnesses, 
     } 
 } = require('./constants/mqtt');
-const app = express();
 
-const cors = require('cors')({origin: true});
+exports.api = functions.https.onRequest((request, response) => {
 
-const test = require('./routes/test.routes.js');
+    const options = {
+      port: functions.config().mqtt.server.port,
+      host: functions.config().mqtt.server.host,
+      clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
+      encoding: 'utf8'
+    };
+  
+    const client = mqtt.connect(functions.config().mqtt.server.host, options);
 
-app.use(cors);
+    client.on('connect', () => {
+      console.log('client connected');
+    });
+  
+    client.on('error', (err) => {
+      console.error(err);
+    });
 
-subscribeMqtt.subscribe(temperatures);
-subscribeMqtt.subscribe(brightnesses);
-subscribeMqtt.getMessages();
-
-// Import API Routes
-app.use('/test', test);
-
-exports.app = functions.https.onRequest(app);
+    PubSub = new PubSub(client);
+    PubSub.subscribe(temperatures);
+    PubSub.subscribe(brightnesses);
+    PubSub.getMessages();
+  
+});

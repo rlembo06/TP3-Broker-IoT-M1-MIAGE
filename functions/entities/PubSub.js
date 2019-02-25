@@ -1,17 +1,14 @@
-const mqtt = require('mqtt')
 const { 
-    broker: { url }, 
     topics: { temperatures, brightnesses, notificationWeb } 
 } = require('../constants/mqtt');
-const client  = mqtt.connect(url);
 const { addTemperature } = require('../models/temperatures.model');
 const { addBrightness } = require('../models/brightnesses.model');
-const { publish } = require('./publisher');
 
-module.exports = {
+module.exports = client => {
+
     subscribe: topic => client.on('connect', () => {
         client.subscribe(topic)
-    }),
+    });
 
     getMessages: () => client.on('message', async (topic, message) => {
         data = message.toString();
@@ -25,5 +22,6 @@ module.exports = {
             await client.publish(notificationWeb, topic);
         }
         console.log('TOPIC : ', topic, 'data: ', data)
-    })
+    });
+    
 }
