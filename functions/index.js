@@ -12,15 +12,7 @@ const { addTemperature } = require('./models/temperatures.model');
 const { addBrightness } = require('./models/brightnesses.model');
 
 exports.api = functions.https.onRequest((request, response) => {
-
-    /* const options = {
-      port: functions.config().mqtt.server.port,
-      host: functions.config().mqtt.server.host,
-      clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
-      encoding: 'utf8'
-    }; */
-  
-    //const client = mqtt.connect(functions.config().mqtt.server.host, options);
+    
     const client = mqtt.connect(url);
 
     client.on('connect', () => {
