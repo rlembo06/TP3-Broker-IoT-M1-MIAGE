@@ -1,3 +1,4 @@
+const express = require('express');
 const mqtt = require('mqtt');
 const { 
     broker: { url },
@@ -5,10 +6,12 @@ const {
         temperatures, 
         brightnesses, 
         notificationWeb,
+
     } 
 } = require('./constants/mqtt');
-const { addTemperature } = require('./models/temperatures.model');
+const app = express();
 const { addBrightness } = require('./models/brightnesses.model');
+const { addTemperature } = require('./models/temperatures.model');
 
 const mqttApi = () => {
 
@@ -40,3 +43,8 @@ const mqttApi = () => {
 };
 
 mqttApi();
+
+app.listen(3000, () => {
+    console.log('App listening on port 3000!')
+})
+  

@@ -1,10 +1,10 @@
-const db = require('../firestore')
+const firestore = require('../api/firestore');
 
 module.exports = {
 
     addBrightness: async ({macAddress, brightnessInLux}) => {
         try {
-            const response = await db.collection("brightnesses").add({macAddress, brightnessInLux})
+            await firestore.post('brightnesses', {macAddress, brightnessInLux});
             console.log('[MODELS][BRIGHTNESSES][addBrightness] - Success')
         } catch (error) {
             console.error('[MODELS][BRIGHTNESSES][addBrightness] - Failure : ', error)

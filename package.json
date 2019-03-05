@@ -3,14 +3,18 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "debug": "node --inspect app.js"
   },
   "dependencies": {
     "@firebase/firestore": "^1.0.4",
+    "babel-install": "^2.1.0",
     "debug": "~2.6.9",
+    "express-async-await": "^1.1.0",
     "firebase": "^5.8.4",
     "firebase-admin": "^7.0.0",
-    "mqtt": "^2.18.8"
+    "mqtt": "^2.18.8",
+    "node-fetch": "^2.3.0"
   },
   "engines": {
     "node": "8"
