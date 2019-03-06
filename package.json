@@ -9,6 +9,7 @@
   "dependencies": {
     "@firebase/firestore": "^1.0.4",
     "debug": "~2.6.9",
+    "express": "^4.16.4",
     "firebase": "^5.8.4",
     "firebase-admin": "^7.0.0",
     "mqtt": "^2.18.8"
