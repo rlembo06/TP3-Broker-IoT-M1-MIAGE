@@ -47,4 +47,4 @@ server.listen(port, () => {
 
 setInterval(() => {
   console.log("Don't stop Dynos Heroku");
-}, 30000);
+}, 60000 * 15); // Each 15 min
