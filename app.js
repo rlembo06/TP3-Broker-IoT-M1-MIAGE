@@ -1,6 +1,6 @@
 const mqtt = require("mqtt");
 const express = require("express");
-const http = require("http");
+//const http = require("http");
 const {
   broker: { url },
   topics: { temperatures, brightnesses, notificationWeb }
@@ -9,8 +9,7 @@ const { addTemperature } = require("./models/temperatures.model");
 const { addBrightness } = require("./models/brightnesses.model");
 
 const app = express();
-const port = process.env.PORT || 8080;
-const server = http.Server(app);
+//const port = process.env.PORT || 8080;
 
 const mqttApi = () => {
   const client = mqtt.connect(url);
@@ -41,8 +40,12 @@ const mqttApi = () => {
 
 mqttApi();
 
-app.get("/", () => {
-  console.log("200 OK");
+app.get("/", (req, res) => {
+  res.send("OK");
+});
+
+app.listen(process.env.PORT, () => {
+  console.log("Monitoring app started");
 });
 
 /* server.listen(port, () => {
