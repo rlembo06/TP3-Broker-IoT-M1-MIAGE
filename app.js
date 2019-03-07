@@ -44,3 +44,7 @@ mqttApi();
 server.listen(port, () => {
   console.log(`Listening on port:${port}/`);
 });
+
+setInterval(() => {
+  console.log("Don't stop Dynos Heroku");
+}, 30000);
