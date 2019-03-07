@@ -41,10 +41,15 @@ const mqttApi = () => {
 
 mqttApi();
 
-server.listen(port, () => {
-  console.log(`Listening on port:${port}/`);
+app.get("/", () => {
+  console.log("200 OK");
 });
 
-setInterval(() => {
+/* server.listen(port, () => {
+  console.log(`Listening on port:${port}/`);
+}); */
+
+/* setInterval(() => {
   console.log("Don't stop Dynos Heroku");
 }, 60000 * 15); // Each 15 min
+ */
