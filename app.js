@@ -1,6 +1,5 @@
 const mqtt = require("mqtt");
 const express = require("express");
-//const http = require("http");
 const {
   broker: { url },
   topics: { temperatures, brightnesses, notificationWeb }
@@ -9,7 +8,6 @@ const { addTemperature } = require("./models/temperatures.model");
 const { addBrightness } = require("./models/brightnesses.model");
 
 const app = express();
-//const port = process.env.PORT || 8080;
 
 const mqttApi = () => {
   const client = mqtt.connect(url);
@@ -41,18 +39,9 @@ const mqttApi = () => {
 mqttApi();
 
 app.get("/", (req, res) => {
-  res.send("OK");
+  res.send("API - IoT - M1 MIAGE");
 });
 
 app.listen(process.env.PORT, () => {
   console.log("Monitoring app started");
 });
-
-/* server.listen(port, () => {
-  console.log(`Listening on port:${port}/`);
-}); */
-
-/* setInterval(() => {
-  console.log("Don't stop Dynos Heroku");
-}, 60000 * 15); // Each 15 min
- */
