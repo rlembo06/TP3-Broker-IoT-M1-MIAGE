@@ -19,10 +19,16 @@ npm run start
 ## Description du projet :
 
 ### Architecture :
-Les cartes ESP32 "publish" leurs températures (topic : "m1/miage/iot/temperatures") et leurs luminosités (topic : "m1/miage/iot/brightnesses") sur un broker gratuit (broker.hivemq.com). 
-Une API hébergée sur Heroku se "subscribe" aux topics de luminosités et de températures, et reçoit ces valeurs pour les enregistrer en base de données sur Firestore. Suite à cela, l'API "publish" un message de notification (topic : "m1/miage/iot/notificationWeb") pour avertir le client web (en Vue.js) abonnée à ce même topic, de nouvelles valeurs de températures ou de luminosités, afin de rafraîchir les pages concernées (apparition d'une pop-up de notification).
+Les micro-controlleurs ESP32, après avoir récupéré les valeurs des capteurs de température et de luminosité, publient (MQTT publish) les données via le protocole MQTT sur un broker gratuit (broker.hivemq.com), respectivement sur les topics "m1/miage/iot/temperatures" et "m1/miage/iot/brightnesses".
 
-<img src="https://firebasestorage.googleapis.com/v0/b/tp3-iot-m1-miage.appspot.com/o/archi-tp3-iot-m1-miage.png?alt=media&token=8c3eb28e-f4ac-4982-b17f-c4559d80fe57">
+Une API Node.js hébergée sur Heroku s'abonne (MQTT subscribe) aux topics de luminosités et de températures à son initialisation. Lorsqu'elle reçoit une valeur, elle l'enregistre en base de données dans la collection correspondante (temperatures/brightnesses).
+Ensuite, et seulement si l'enregistrement en base de données s'est effectué avec succès, l'API publie (MQTT publish) un message de notification sur le topic "m1/miage/iot/notificationWeb" afin d'avertir le client web énoncé dans le paragraphe suivant. 
+
+Un client web Vue.js récupère les données persistées en base de donnée lorsqu'il s'initialise. Bien qu'il soit possible de rafraîchir les données manuellement afin de vérifier si de nouvelles données sont arrivées, nous avons implémenté un mécanisme de rafraîchissement automatique grâce aux notifications MQTT. Ce client est ainsi abonné au topic de notification "m1/miage/iot/notificationWeb" afin de rafraîchir la page concernée tout en affichant une pop-up à l'utilsateur lorsqu'une nouvelle valeur est entrée en base de données.
+
+En plus de s'assurer de la bonne persistence des données avant d'en informer les consommeurs des données de la database Firestore, le topic de notification nous permet également de nous assurer du bon fonctionnement du client web dans un contexte asynchrone, afin d'éviter par exemple que les graphiques côté utilisateur ne se rafraîchissent avant que la donnée ne soit persistée.
+
+<img src="https://firebasestorage.googleapis.com/v0/b/tp3-iot-m1-miage.appspot.com/o/archi-tp3-iot-m1-miage-v2.png?alt=architecture&token=8c3eb28e-f4ac-4982-b17f-c4559d80fe57">
 
 ### Données 
 
