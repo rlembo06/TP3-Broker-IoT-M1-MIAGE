@@ -28,7 +28,7 @@ Un client web Vue.js récupère les données persistées en base de donnée lors
 
 En plus de s'assurer de la bonne persistence des données avant d'en informer les consommeurs des données de la database Firestore, le topic de notification nous permet également de nous assurer du bon fonctionnement du client web dans un contexte asynchrone, afin d'éviter par exemple que les graphiques côté utilisateur ne se rafraîchissent avant que la donnée ne soit persistée.
 
-<img src="https://firebasestorage.googleapis.com/v0/b/tp3-iot-m1-miage.appspot.com/o/archi-tp3-iot-m1-miage-v2.png?alt=architecture&token=8c3eb28e-f4ac-4982-b17f-c4559d80fe57">
+<img src="https://firebasestorage.googleapis.com/v0/b/tp3-iot-m1-miage.appspot.com/o/archi-tp3-iot-m1-miage-v2.png?alt=media&token=7c2ea55c-5782-454d-bcef-ea3d48961307">
 
 ### Données 
 
