@@ -43,11 +43,11 @@ A toutes les étapes de ce processus, le micro-controlleur écrit dans la sortie
 
 ### Node.js (server-side) MQTT Subscriber
 
+### Vue.js (client-side) MQTT Subscriber
+
 1. A l'ouverture du client web, celui-ci effectue des requêtes HTTP GET pour récupérer les informations sur les températures ou sur la luminosité (valeurs + données temporelles stockées sur la base de données Firestore), à travers des URI de l'API REST Firestore.
 2. Les données collectées sont ensuite restructurées pour les afficher dans des graphiques linéaires (via la librairie v-chart). Il y a une courbe par client ESP 32, identifiée par adresse MAC. Les fonctionnalités ci-dessous sont disponibles :
     - La dernière date de capture de données est notifiée, avec le nombre de collecte effectué.
     - Il est possible de modifier le seuil pour la température (C°) ou pour la luminosité (LDR).
     - Il est possible de rafraîchir les données à travers un bouton.
 3. Il est abonné au topic de notification sur le broker (broker.hivemq.com), lui permettant de raffraîchir les données de températures ou le luminosités, en faisant une requête HTTP GET (voir étape 1). Suite à ca, un message de notification apparaît pour informer l'utilisateur de la mise-à-jour des données.
-
-### Vue.js (client-side) MQTT Subscriber
