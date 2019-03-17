@@ -43,11 +43,18 @@ A toutes les étapes de ce processus, le micro-controlleur écrit dans la sortie
 
 ### Node.js (server-side) MQTT Subscriber
 
+L'API développée en Node.js, hébergée sur Heroku, se subscribe aux topics de températures et de luminosités via la librairie NPM nommée "mqtt", à la réception de données envoyé par une carte ESP 32 :
+1. L'API parse l'information reçue en JSON.
+2. L'API enregistre les données en base de données Firebase via la librairie NPM "firebase-admin" (valeurs + données temporelles par adresse MAC stockées sur la base de données Firestore):
+    - Dans une collection "temperatures" si ce sont des données de températures. - Dans une collection "brightnesses" si ce sont des données de luminosités.
+3. L'API publish un message sur le topic de notification pour prévenir le client web en Vue.js de rafraîchir ses informations de températures, ou de luminosités.
+
+
 ### Vue.js (client-side) MQTT Subscriber
 
-1. A l'ouverture du client web, celui-ci effectue des requêtes HTTP GET pour récupérer les informations sur les températures ou sur la luminosité (valeurs + données temporelles stockées sur la base de données Firestore), à travers des URI de l'API REST Firestore.
+1. A l'ouverture du client web, celui-ci effectue des requêtes HTTP GET vers la base de données Firestore pour récupérer les informations sur les températures ou sur la luminosités (valeurs + données temporelles par adresse MAC stockées sur la base de données Firestore), à travers des URI de l'API REST Firestore.
 2. Les données collectées sont ensuite restructurées pour les afficher dans des graphiques linéaires (via la librairie v-chart). Il y a une courbe par client ESP 32, identifiée par adresse MAC. Les fonctionnalités ci-dessous sont disponibles :
     - La dernière date de capture de données est notifiée, avec le nombre de collecte effectué.
     - Il est possible de modifier le seuil pour la température (C°) ou pour la luminosité (LDR).
     - Il est possible de rafraîchir les données à travers un bouton.
-3. Il est abonné au topic de notification sur le broker (broker.hivemq.com), lui permettant de raffraîchir les données de températures ou le luminosités, en faisant une requête HTTP GET (voir étape 1). Suite à ca, un message de notification apparaît pour informer l'utilisateur de la mise-à-jour des données.
+3. Il est abonné au topic de notification sur le broker (broker.hivemq.com), via une librairie NPM nommée "mqtt", lui permettant de rafraîchir les données de températures ou de luminosités, en faisant une requête HTTP GET (voir étape 1). Suite à ça, un message de notification apparaît pour informer l'utilisateur de la mise-à-jour des données.
