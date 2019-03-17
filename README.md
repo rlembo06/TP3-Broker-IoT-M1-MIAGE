@@ -1,7 +1,7 @@
 # (API) TP3 - IoT - M1 MIAGE - MQTT : ESP32 / Broker / Client
 
 - <a href="https://tp3-iot-m1-miage.firebaseapp.com/" target="_blank">Notre client web hébergé sur Firebase (Eventuelle autorisation d'accès au site non sécurisé)</a>
-- <a href="https://github.com/rlembo06/TP3-api-IoT-M1-MIAGE" target="_blank">Répertoire Github de notre API</a>
+- <a href="https://github.com/rlembo06/TP3-client-IoT-M1-MIAGE" target="_blank">Répertoire Github de nos client web et ESP32</a>
 - <a href="http://www.i3s.unice.fr/~menez/M1Miage/TP3/tp3.pdf" target="_blank">Consignes du TP</a>
 
 ## Membres du projet :
