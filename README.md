@@ -46,7 +46,8 @@ A toutes les étapes de ce processus, le micro-controlleur écrit dans la sortie
 L'API développée en Node.js, hébergée sur Heroku, se subscribe aux topics de températures et de luminosités via la librairie NPM nommée "mqtt", à la réception de données envoyé par une carte ESP 32 :
 1. L'API parse l'information reçue en JSON.
 2. L'API enregistre les données en base de données Firebase via la librairie NPM "firebase-admin" (valeurs + données temporelles par adresse MAC stockées sur la base de données Firestore):
-    - Dans une collection "temperatures" si ce sont des données de températures. - Dans une collection "brightnesses" si ce sont des données de luminosités.
+    - Dans une collection "temperatures" si ce sont des données de températures.
+    - Dans une collection "brightnesses" si ce sont des données de luminosités.
 3. L'API publish un message sur le topic de notification pour prévenir le client web en Vue.js de rafraîchir ses informations de températures, ou de luminosités.
 
 
